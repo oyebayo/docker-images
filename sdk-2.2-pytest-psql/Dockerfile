@@ -7,5 +7,5 @@ LABEL description="Ubuntu image with dotnetcore 2.2, including PyTest and postgr
 
 ENV PATH="${PATH}:~/.dotnet/tools"
 RUN apk update && apk upgrade && \
-apk -Uv add bash python3 py3-simplejson py3-requests py3-pytest postgresql-client && \
+apk -Uv add bash tar gzip python3 py3-simplejson py3-requests py3-pytest postgresql-client && \
 rm /var/cache/apk/*
