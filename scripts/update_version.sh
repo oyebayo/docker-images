@@ -13,9 +13,9 @@ fi
 # get commit logs and determine how to bump the version
 # supports #major, #minor, #patch (anything else will be 'build')
 case "$log" in
-    *#major* ) new=$(semver bump major $t);;
-    *#feature* ) new=$(semver bump minor $t);;
-    *#fix* ) new=$(semver bump patch $t);;
+    *#major* ) new=$(semver.sh bump major $t);;
+    *#feature* ) new=$(semver.sh bump minor $t);;
+    *#fix* ) new=$(semver.sh bump patch $t);;
 esac
 
 # if the developer didnt annotate his commit, 'new' will be empty
@@ -25,8 +25,8 @@ then
     new=$t
 fi
 # always increment the build as per Circle CI
-new=$(semver bump patch $new)
-new=$(semver bump prerel b$CIRCLE_BUILD_NUM $new)
+new=$(semver.sh bump patch $new)
+new=$(semver.sh bump prerel b$CIRCLE_BUILD_NUM $new)
 echo $new > $CIRCLE_WORKING_DIRECTORY/res/VERSION
 
 # Let git know the version has been updated
