@@ -11,3 +11,6 @@ pip3 install --upgrade pip && \
 pip3 install awscli --upgrade && \
 apk --purge -v del py-pip && \
 rm /var/cache/apk/*
+
+ADD scripts/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/*

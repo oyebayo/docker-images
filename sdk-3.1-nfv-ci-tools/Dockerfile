@@ -32,5 +32,8 @@ RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/
   && chmod +x ./aws-iam-authenticator \
   && mv ./aws-iam-authenticator /usr/local/bin
 
+ADD scripts/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/*
+
 ENV PATH="/root/.local/bin:${PATH}"
 

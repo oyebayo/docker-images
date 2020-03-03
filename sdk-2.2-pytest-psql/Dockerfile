@@ -8,3 +8,6 @@ LABEL description="Ubuntu image with dotnetcore 2.2, including PyTest and postgr
 RUN apk update && apk upgrade && \
 apk -Uv add bash jq git curl openssh-client tar gzip python3 py3-simplejson py3-requests py3-pytest postgresql-client && \
 rm /var/cache/apk/*
+
+ADD scripts/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/*
