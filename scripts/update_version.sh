@@ -31,7 +31,7 @@ echo $new > $CIRCLE_WORKING_DIRECTORY/res/VERSION
 
 # Let git know the version has been updated
 git add $CIRCLE_WORKING_DIRECTORY/res/VERSION
-git commit -m "Version update [skip ci]"
+git commit -m "This is an automated commit by CircleCI [skip ci]"
 git push -u origin $CIRCLE_BRANCH
 
 echo $new
