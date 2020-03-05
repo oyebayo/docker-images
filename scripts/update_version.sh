@@ -35,4 +35,4 @@ git pull
 git commit -m "This is an automated commit by CircleCI [skip ci]"
 git push -u origin $CIRCLE_BRANCH
 
-echo "New vesrion is $new"
+echo "New version is $new"
