@@ -32,6 +32,10 @@ RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/
   && chmod +x ./aws-iam-authenticator \
   && mv ./aws-iam-authenticator /usr/local/bin
 
+RUN VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
+  && curl -L https://storage.googleapis.com/kubernetes-release/release/${VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
+  && chmod +x /usr/local/bin/kubectl
+
 ADD scripts/* /usr/local/bin/
 RUN chmod +x /usr/local/bin/*
 
