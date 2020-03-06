@@ -23,7 +23,14 @@ echo "build = $build_num"
 
 ## get commit logs and determine how to bump the version
 ## supports #major, #minor, #patch (anything else will be 'build')
-log=$(git log --pretty=oneline)
+auto_skip_pattern="\[skip ci\]"
+log=$(git log \
+  --oneline "master..origin/$CIRCLE_BRANCH" \
+  --no-merges \
+  --invert-grep \
+  --regexp-ignore-case \
+  --grep=$auto_skip_pattern)
+
 case "$log" in
     *#major* ) 
 		annotation='major'
