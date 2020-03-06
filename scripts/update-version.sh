@@ -59,7 +59,7 @@ echo $new > $version_file
 
 # Let git know the version has been updated
 git add $version_file
-git commit -m "This is an automated commit by CircleCI [skip ci]"
+git commit -m "This is an automated commit by CircleCI"
 git pull
 git push -u origin $CIRCLE_BRANCH
 
