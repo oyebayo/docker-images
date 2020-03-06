@@ -18,6 +18,11 @@ fi
 # split $t using the hyphen as a separator (the D)
 # and take the 2nd field
 build_tag="$(cut -d'-' -f 2 <<< $t)"
+if [ $build_tag -eq $t ]; then
+	#couldnt split because $t has no build number
+	build_tag="b0"
+fi
+
 build_num="$(cut -d'b' -f 2 <<< $build_tag)"
 echo "build = $build_num"
 
