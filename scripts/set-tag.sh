@@ -1,7 +1,14 @@
 #!/bin/bash
 
-## We used to get repo name from git, but this section is
-## commented now because CircleCI gives us these values
+# See if path was passed
+if [[ $# -eq 0 || -z $1 ]]; then
+  echo "Path to version file not specified"
+  exit 1
+fi
+version_file=$1
+
+# get last version
+VERSION=$(cat $version_file)
 
 ## POST a new ref/tag to repo via Github API
 curl -s -X POST https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/git/refs \

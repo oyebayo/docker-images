@@ -1,7 +1,13 @@
 #!/bin/bash
+# See if path was passed
+if [[ $# -eq 0 || -z $1 ]]; then
+  echo "Path to version file not specified"
+  exit 1
+fi
 
+version_file=$1
 # get last version
-t=$(cat $CIRCLE_WORKING_DIRECTORY/res/VERSION)
+t=$(cat $version_file)
 
 # if there are none, start tags at 0.0.1
 if [ -z "$t" ]
@@ -25,10 +31,10 @@ case "$log" in
     * ) new=$(semver.sh bump prerel b$((build_num+1)) $t);;
 esac
 
-echo $new > $CIRCLE_WORKING_DIRECTORY/res/VERSION
+echo $new > $version_file
 
 # Let git know the version has been updated
-git add $CIRCLE_WORKING_DIRECTORY/res/VERSION
+git add $version_file
 git commit -m "This is an automated commit by CircleCI [skip ci]"
 git pull
 git push -u origin $CIRCLE_BRANCH
