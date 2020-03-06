@@ -25,12 +25,24 @@ echo "build = $build_num"
 ## supports #major, #minor, #patch (anything else will be 'build')
 log=$(git log --pretty=oneline)
 case "$log" in
-    *#major* ) new=$(semver.sh bump major $t);;
-    *#feature* ) new=$(semver.sh bump minor $t);;
-    *#fix* ) new=$(semver.sh bump patch $t);;
-    * ) new=$(semver.sh bump prerel b$((build_num+1)) $t);;
+    *#major* ) 
+		annotation='major'
+		new=$(semver.sh bump major $t)
+		;;
+    *#feature* )
+		annotation='feature'
+		new=$(semver.sh bump minor $t)
+		;;
+    *#fix* ) 
+		annotation='fix'
+		new=$(semver.sh bump patch $t)
+		;;
+    * ) 
+		annotation='<none>'
+		new=$(semver.sh bump prerel b$((build_num+1)) $t)
+		;;
 esac
-
+echo "Contributor's annotation: #$annotation"
 echo $new > $version_file
 
 # Let git know the version has been updated
