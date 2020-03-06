@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# get latest tag
-echo "Looking for file at $CIRCLE_WORKING_DIRECTORY/res/VERSION..."
+# get last version
 t=$(cat $CIRCLE_WORKING_DIRECTORY/res/VERSION)
-echo "t = $t"
 
 # if there are none, start tags at 0.0.1
 if [ -z "$t" ]
 then
-    echo "Using default start..."
     t=0.0.1-b0
 fi
 
@@ -28,13 +25,12 @@ case "$log" in
     * ) new=$(semver.sh bump prerel b$((build_num+1)) $t);;
 esac
 
-echo "new  = $new..."
 echo $new > $CIRCLE_WORKING_DIRECTORY/res/VERSION
 
-## Let git know the version has been updated
-##git add $CIRCLE_WORKING_DIRECTORY/res/VERSION
-##git pull
-##git commit -m "This is an automated commit by CircleCI [skip ci]"
-##git push -u origin $CIRCLE_BRANCH
+# Let git know the version has been updated
+git add $CIRCLE_WORKING_DIRECTORY/res/VERSION
+git commit -m "This is an automated commit by CircleCI [skip ci]"
+git pull
+git push -u origin $CIRCLE_BRANCH
 
-#echo "New version is $new"
+echo "New version is $new"
