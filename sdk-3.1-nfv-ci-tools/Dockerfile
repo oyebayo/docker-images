@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
 
 LABEL version="1.0"
-LABEL maintainer="Bayo Oyekole <oyebayo@gmail.com>"
+LABEL maintainer="Bayo Oyekole <oyebayo.oyekole@t.com>"
 LABEL description="Alpine image with dotnetcore 3.1, including CI build & versioning tools: \
  PyTest, semver, postgres client, jq, docker and git"
 
